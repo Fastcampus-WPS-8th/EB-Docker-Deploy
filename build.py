@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-import sys
 import argparse
 import os
 import subprocess
+import sys
 
-MODES = ['base', 'local', 'dev']
+MODES = ['base', 'local', 'dev', 'production']
 
 
 def get_mode():
@@ -78,6 +78,18 @@ def build_dev():
         subprocess.call('pipenv lock --requirements --dev > requirements.txt', shell=True)
         # docker build
         subprocess.call('docker build -t eb-docker:dev -f Dockerfile.dev .', shell=True)
+    finally:
+        # 끝난 후 requirements.txt파일 삭제
+        os.remove('requirements.txt')
+
+
+def build_production():
+    try:
+        # pipenv lock으로 requirements.txt생성
+        subprocess.call('pipenv lock --requirements > requirements.txt', shell=True)
+        # docker build
+        subprocess.call('docker build -t eb-docker:production -f Dockerfile.production .',
+                        shell=True)
     finally:
         # 끝난 후 requirements.txt파일 삭제
         os.remove('requirements.txt')
