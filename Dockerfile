@@ -17,6 +17,9 @@ ENV             DJANGO_SETTINGS_MODULE  config.settings.${BUILD_MODE}
 
 COPY            .   /srv/project
 
+# 로그파일 기록 위한 폴더 생성
+RUN             mkdir /var/log/django
+
 # Nginx 설정파일들 복사 및 enabled로 링크
 RUN             cp -f   /srv/project/.config/${BUILD_MODE}/nginx.conf \
                         /etc/nginx/nginx.conf && \
