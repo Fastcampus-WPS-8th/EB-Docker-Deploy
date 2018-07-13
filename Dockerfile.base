@@ -3,7 +3,7 @@ MAINTAINER      dev@lhy.kr
 
 # uWSGI는 Pipfile에 기록
 RUN             apt -y update && apt -y dist-upgrade
-RUN             apt -y install python-setuptools build-essential
+RUN             apt -y install build-essential
 RUN             apt -y install nginx supervisor
 
 # 로컬의 requirements.txt파일을 /srv에 복사 후 pip install실행
