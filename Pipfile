@@ -8,6 +8,7 @@ django = "*"
 uwsgi = "*"
 django-storages = "*"
 "psycopg2-binary" = "*"
+pillow = "*"
 
 [dev-packages]
 awsebcli = "*"
