@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 uwsgi = "*"
+django-storages = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 awsebcli = "*"

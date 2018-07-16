@@ -1,21 +1,30 @@
 from .base import *
+
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
 DEBUG = False
 ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
 
 WSGI_APPLICATION = 'config.wsgi.production.application'
+INSTALLED_APPS += [
+    'storages',
+]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DB
+DATABASES = secrets['DATABASES']
 
-STATIC_URL = '/static/'
+# Media
+DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
+AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
 
+# Log
+# /var/log/django 디렉토리가 존재하면 LOG_DIR로 그대로 사용
+# 없으면 ROOT_DIR/.log디렉토리를 사용 (없으면 생성)
 LOG_DIR = '/var/log/django'
+if not os.path.exists(LOG_DIR):
+    LOG_DIR = os.path.join(ROOT_DIR, '.log')
+    os.makedirs(LOG_DIR, exist_ok=True)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
