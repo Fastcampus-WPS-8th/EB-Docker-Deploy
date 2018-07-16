@@ -4,7 +4,7 @@ from .base import *
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
 # Django가 runserver로 켜졌는지 확인
-RUNSERVER = sys.argv[1] == 'runserver'
+RUNSERVER = 'runserver' in sys.argv
 DEBUG = False
 ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
 
