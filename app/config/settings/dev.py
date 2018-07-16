@@ -14,5 +14,5 @@ INSTALLED_APPS += [
 DATABASES = secrets['DATABASES']
 
 # Media
-DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
 AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
+DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'

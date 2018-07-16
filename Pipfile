@@ -9,6 +9,7 @@ uwsgi = "*"
 django-storages = "*"
 "psycopg2-binary" = "*"
 pillow = "*"
+"boto3" = "*"
 
 [dev-packages]
 awsebcli = "*"
