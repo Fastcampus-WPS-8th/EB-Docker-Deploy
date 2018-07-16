@@ -1,15 +1,5 @@
-FROM            python:3.6.5-slim
+FROM            azelf/fc-8th-eb-docker:base
 MAINTAINER      dev@lhy.kr
-
-# uWSGI는 Pipfile에 기록
-RUN             apt -y update && apt -y dist-upgrade
-RUN             apt -y install build-essential
-RUN             apt -y install nginx supervisor
-
-# 로컬의 requirements.txt파일을 /srv에 복사 후 pip install실행
-# (build하는 환경에 requirements.txt가 있어야 함!)
-COPY            ./requirements.txt  /srv/
-RUN             pip install -r /srv/requirements.txt
 
 # Production
 ENV             BUILD_MODE              production
