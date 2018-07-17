@@ -9,6 +9,7 @@ WSGI_APPLICATION = 'config.wsgi.dev.application'
 
 INSTALLED_APPS += [
     'storages',
+    'django_extensions',
 ]
 # DB
 DATABASES = secrets['DATABASES']
